@@ -11,7 +11,7 @@
 // Every visible string goes through the client locale service under this
 // plugin's namespace.
 window.__ModuleLoader__.load({
-  id: '@local/skill-menu-studio',
+  id: 'dsh-skill-menu-studio',
   factory(require) {
     const React = require('react')
     const h = React.createElement

@@ -1,10 +1,26 @@
 {
-  "name": "@local/skill-menu-studio",
+  "name": "dsh-skill-menu-studio",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "description": "Left-sidebar panel that controls how skills appear in the / slash menu: display name, description, visibility and order, without changing the skills themselves.",
   "license": "MIT",
+  "author": "YSJ-Q",
+  "keywords": [
+    "deepseek",
+    "dsh",
+    "dsh-plugin",
+    "harness",
+    "skills",
+    "slash-menu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YSJ-Q/dsh-skill-menu-studio.git"
+  },
+  "homepage": "https://github.com/YSJ-Q/dsh-skill-menu-studio#readme",
+  "bugs": {
+    "url": "https://github.com/YSJ-Q/dsh-skill-menu-studio/issues"
+  },
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
@@ -19,7 +35,8 @@
     "locale/*.json",
     "docs",
     "icon.svg",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "dsh": {
     "bundle": {

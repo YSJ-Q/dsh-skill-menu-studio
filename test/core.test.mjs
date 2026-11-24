@@ -211,11 +211,11 @@ test('setVisibilityForAll leaves an already-hidden name alone', () => {
 
 test('the host and client bundles are syntactically valid', async () => {
   const host = await import('../index.js')
-  assert.equal(host.name, 'skill-menu-studio')
+  assert.equal(host.name, 'dsh-skill-menu-studio')
   assert.deepEqual(host.inject, ['webServer'])
   assert.equal(typeof host.apply, 'function')
   const source = readFileSync(new URL('../client.js', import.meta.url), 'utf8')
   assert.doesNotThrow(() => new vm.Script(source, { filename: 'client.js' }))
   assert.match(source, /window\.__ModuleLoader__\.load/)
-  assert.match(source, /id: '@local\/skill-menu-studio'/)
+  assert.match(source, /id: 'dsh-skill-menu-studio'/)
 })

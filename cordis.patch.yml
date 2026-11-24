@@ -1,8 +1,6 @@
-# Skill menu bundle patch: inserts the Host half (display-state API on the
-# loopback web server, the `skills/list` display overlay, and the alias skill
-# provider) into the profile's layer stack. The `dsh.client` declaration in
-# package.json makes the web app load client.js, which registers the "Skill
-# menu" entry in the left sidebar and its management page.
+# Skill menu 插件包补丁：把 Host 端（回环 web server 上的状态 API、`skills/list`
+# 显示覆盖、别名技能提供者）插入 profile 的层栈。package.json 的 `dsh.client`
+# 声明让 Web 端加载 client.js，它负责注册左侧栏「技能菜单」入口与管理页。
 - insert:
     - id: skill-menu-studio
-      name: '@local/skill-menu-studio'
+      name: 'dsh-skill-menu-studio'

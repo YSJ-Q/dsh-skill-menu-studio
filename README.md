@@ -1,6 +1,43 @@
-# 技能菜单（Skill menu）
+# 技能菜单（dsh-skill-menu-studio）
 
 DeepSeek Harness 的左侧栏插件，用来管理技能在输入框 `/` 斜杠菜单里的显示方式。它只改显示：技能本身、加载方式，以及提供给模型的技能目录都不受影响。
+
+仓库：<https://github.com/YSJ-Q/dsh-skill-menu-studio>
+
+## 安装
+
+要求：DeepSeek Harness 的 **Web GUI** profile（插件依赖 harness web server；TUI/headless profile 不会加载）。
+
+### 从 GitHub 安装（当前可用）
+
+- Web：左侧栏「插件」→ 右上「添加插件」→ 输入 `github:YSJ-Q/dsh-skill-menu-studio`。
+- 命令行：
+
+  ```bash
+  dsh plugin --profile <profile> add github:YSJ-Q/dsh-skill-menu-studio
+  ```
+
+安装器会先用 `git ls-remote` 探测 github.com（默认 5 秒超时，且不读取 pnpm 的代理配置），通过后由 pnpm 拉取仓库并选中该 bundle。Git 安装会固定到安装时的提交，之后要升级就重新执行一次 `add`（或先 remove 再 add）；安装 spec 里带完整 40 位 commit 时，管理器才能用 `update` 追踪新提交。
+
+### 从 npm 安装（发布到 npm 之后）
+
+```bash
+dsh plugin --profile <profile> add dsh-skill-menu-studio
+```
+
+### 本地开发
+
+```bash
+dsh plugin --profile <profile> add <本仓库目录>
+```
+
+### 卸载
+
+```bash
+dsh plugin --profile <profile> remove dsh-skill-menu-studio
+```
+
+卸载后状态文件 `<DSH 主目录>/skill-menu-studio.json` 仍会保留；确认不再需要时可手动删除。
 
 ## 功能
 
@@ -35,6 +72,16 @@ DeepSeek Harness 的左侧栏插件，用来管理技能在输入框 `/` 斜杠�
 ## 环境要求与限制
 
 - 需要挂载 harness web server（Web GUI）。面板 API 只响应回环地址请求，写入要求 JSON content type，且请求带有 `Origin` 时必须与 `Host` 一致。
+- 在 DSH `0.2.2-rc.5` 上开发与验证。包内没有声明 `engines.dsh`，因此不会被版本检查拦截；更老或更新的 DSH 版本可能存在 API 差异。
 - 显示覆盖通过包裹 `sessionSkillCatalog.list` 原型方法实现。如果未来 DSH 版本让该方法不可包裹，面板仍能列出技能并保存设置，但会显示“斜杠菜单覆盖未生效”的警告。
 - 别名必须使用 kebab-case，且不能与真实技能名冲突。如果之后新装的技能占用了已有别名，注册表中真实技能会胜出：改名该别名即可恢复预期条目。
 - 状态文件损坏会重置为默认值并在面板提示；任何改动都不会静默写入技能文件。
+
+## 测试
+
+```bash
+node test/core.test.mjs
+node test/host.test.mjs
+```
+
+`test/core.test.mjs` 覆盖状态校验、装饰与排序等纯逻辑；`test/host.test.mjs` 用假 Cordis 上下文驱动真实的 `apply()`，在临时 `DSH_HOME` 下验证 API、显示覆盖与别名加载，不会碰真实状态文件。

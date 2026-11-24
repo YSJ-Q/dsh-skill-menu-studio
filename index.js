@@ -32,7 +32,7 @@ import {
   summarize,
 } from './core.js'
 
-export const name = 'skill-menu-studio'
+export const name = 'dsh-skill-menu-studio'
 
 /** The Web panel needs the harness web server; the skill services are optional. */
 export const inject = ['webServer']
