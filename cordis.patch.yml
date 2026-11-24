@@ -1,0 +1,8 @@
+# Skill menu bundle patch: inserts the Host half (display-state API on the
+# loopback web server, the `skills/list` display overlay, and the alias skill
+# provider) into the profile's layer stack. The `dsh.client` declaration in
+# package.json makes the web app load client.js, which registers the "Skill
+# menu" entry in the left sidebar and its management page.
+- insert:
+    - id: skill-menu-studio
+      name: '@local/skill-menu-studio'

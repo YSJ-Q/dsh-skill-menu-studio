@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Skill menu",
+    "description": "Adds a Skill menu panel to the left sidebar that controls how skills appear in the `/` slash menu: display name, description, whether the entry is shown, and its order. These are display overrides only — a hidden or renamed skill still loads from `/original-name`, and the skill catalog offered to the model is unchanged. The panel merges the skills of every agent preset and workspace, stores its settings in `<DSH home>/skill-menu-studio.json`, and requires only loopback access to the harness web server.",
+    "detail": "docs/DETAIL.md"
+  }
+}
